@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Wikipedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(34, 34, 34, 0.95);
+      color: #fff;
+      padding: 15px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #00aaff;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('bmw-m5-m-3840x2160-21070.jpg') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 40px 20px 0;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #222;
+      font-size: 28px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Car Wikipedia</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="topcars.html">Top Cars</a>
+      <a href="aboutuspage.html">About Us</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+  </section>
+
+  <main class="container">
+    <h2>About Car Wikipedia</h2>
+    <p>Car Wikipedia is your ultimate destination for exploring the world of cars. Our platform provides detailed information about car models, specifications, and features. Whether you're a car enthusiast or a buyer, we make your journey simple and informed.</p>
+    <h2>Why Choose Car Wikipedia?</h2>
+    <p>Car Wikipedia is designed to cater to car enthusiasts, buyers, and researchers alike. Our platform offers:</p>
+    <ul style="list-style: none; padding: 0; text-align: center;">
+      <li style="margin-bottom: 10px; font-size: 18px; color: #555;">✔ Comprehensive car model details</li>
+      <li style="margin-bottom: 10px; font-size: 18px; color: #555;">✔ Latest trends and updates in the automotive industry</li>
+      <li style="margin-bottom: 10px; font-size: 18px; color: #555;">✔ Easy comparison tools for different car models</li>
+      <li style="margin-bottom: 10px; font-size: 18px; color: #555;">✔ Reliable and accurate information</li>
+    </ul>
+    <p>Join us in exploring the fascinating world of cars and make informed decisions with Car Wikipedia!</p>
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 Car Wikipedia. Project by Pranjal Malhotra
+  </footer>
+</body>
+</html>

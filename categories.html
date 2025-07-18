@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Categories - Car Wikipedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(34, 34, 34, 0.95);
+      color: #fff;
+      padding: 15px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      margin: 0 15px; /* Add spacing between links */
+    }
+
+    .navbar a:hover {
+      color: #00aaff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 100px auto 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #222;
+      font-size: 28px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    #carResults {
+      margin-top: 40px;
+      width: 100vw;
+      max-width: none;
+      left: 0;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .navbar a {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div>Car Wikipedia</div>
+    <nav>
+      <a href="index.html">  Home</a>
+      <a href="categories.html">   Categories</a>
+      <a href="topcars.html">   Top Cars</a>
+      <a href="aboutuspage.html">   About Us</a>
+      <a href="login.html">   Login</a>
+    </nav>
+  </div>
+  <div class="container">
+    <h2>Browse by Category</h2>
+    <label for="categorySelect">Select a car category:</label>
+    <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-bottom:10px;">
+      <select id="categorySelect" style="width:70%;max-width:340px;">
+        <option value="">-- Choose a category --</option>
+        <option value="sedan">Sedan</option>
+        <option value="suv">SUV</option>
+        <option value="sports">Sports Car</option>
+        <option value="luxury">Luxury</option>
+        <option value="muscle">Muscle Car</option>
+        <option value="coupe">Coupe</option>
+        <option value="hatchback">Hatchback</option>
+        <option value="electric">Electric</option>
+      </select>
+    </div>
+    <div id="categoryInfo" style="margin-top:20px; font-size:16px; color:#2d3e50;"></div>
+  </div>
+  <div id="carResults"></div>
+  <div class="footer">
+    &copy; 2025 Car Wikipedia. Project by Pranjal Malhotra
+  </div>
+  <script>
+    const info = {
+      sedan: "Sedans are passenger cars with a three-box configuration and separate compartments for engine, passenger, and cargo.",
+      suv: "SUVs (Sport Utility Vehicles) are larger vehicles with higher ground clearance and often all-wheel drive.",
+      sports: "Sports cars are designed for performance, speed, and agile handling.",
+      luxury: "Luxury cars offer premium features, comfort, and advanced technology.",
+      muscle: "Muscle cars are high-performance American coupes with powerful engines.",
+      coupe: "Coupes are two-door cars with a sporty appearance.",
+      hatchback: "Hatchbacks have a rear door that swings upward and a shared passenger/cargo area.",
+      electric: "Electric cars are powered entirely by electricity, offering zero emissions and quiet operation."
+    };
+
+    const cars = [
+      { name: "BMW 3 Series", type: "sedan", image: "bmw3series.jpeg", brand: "BMW", year: 2024, info: "A sporty and luxurious sedan with advanced tech and efficient engines.", details: "Engine: 2.0L Turbo, 255hp | Mileage: 15km/l | Price: $42,000" },
+      { name: "BMW 5 Series", type: "sedan", image: "bmw5series.jpeg", brand: "BMW", year: 2024, info: "Executive sedan with a blend of comfort, performance, and innovation.", details: "Engine: 2.0L/3.0L, up to 335hp | Mileage: 13km/l | Price: $54,000" },
+      { name: "Toyota Camry", type: "sedan", image: "toyotacamry.jpeg", brand: "Toyota", year: 2024, info: "Reliable and efficient sedan, popular for comfort and value.", details: "Engine: 2.5L, 203hp | Mileage: 18km/l | Price: $27,000" },
+      { name: "BMW X5", type: "suv", image: "bmwx5.jpeg", brand: "BMW", year: 2024, info: "Luxury SUV with spacious interior and powerful engine options.", details: "Engine: 3.0L/4.4L, up to 523hp | Mileage: 11km/l | Price: $61,000" },
+      { name: "Porsche Cayenne", type: "suv", image: "porschecayenne.jpeg", brand: "Porsche", year: 2024, info: "Luxury SUV with sporty handling and powerful engine options.", details: "Engine: 3.0L V6, 335hp | AWD | Price: $72,000" },
+      { name: "Porsche 911 Carrera", type: "sports", image: "porsche911carrera.jpeg", brand: "Porsche", year: 2024, info: "Iconic sports car with rear-engine layout and thrilling performance.", details: "Engine: 3.0L Twin-Turbo Flat-6, 379hp | 0-100km/h: 4.2s | Price: $106,000" },
+      { name: "Toyota Supra", type: "sports", image: "toyotasupra.jpeg", brand: "Toyota", year: 2024, info: "Legendary sports coupe, co-developed with BMW, known for its speed.", details: "Engine: 3.0L Turbo, 382hp | 0-100km/h: 4.1s | Price: $45,000" },
+      { name: "BMW M8", type: "coupe", image: "bmwm8.jpeg", brand: "BMW", year: 2024, info: "High-performance coupe with stunning looks and thrilling speed.", details: "Engine: 4.4L V8, 617hp | Mileage: 8km/l | Price: $133,000" },
+      { name: "Ford Mustang GT", type: "muscle", image: "fordmustanggt.jpeg", brand: "Ford", year: 2024, info: "Classic American muscle car with V8 power and aggressive styling.", details: "Engine: 5.0L V8, 450hp | 0-100km/h: 4.3s | Price: $43,000" },
+      { name: "Chevrolet Camaro SS", type: "muscle", image: "chevroletcamaross.avif", brand: "Chevrolet", year: 2024, info: "High-performance muscle car with bold looks and strong acceleration.", details: "Engine: 6.2L V8, 455hp | 0-100km/h: 4.0s | Price: $44,000" },
+      { name: "Dodge Challenger R/T", type: "muscle", image: "dodgechallengerrt.jpeg", brand: "Dodge", year: 2024, info: "Retro-styled muscle car with powerful HEMI V8 and classic appeal.", details: "Engine: 5.7L HEMI V8, 375hp | 0-100km/h: 5.1s | Price: $41,000" },
+      { name: "Tesla Model 3", type: "electric", image: "teslamodel3.jpeg", brand: "Tesla", year: 2024, info: "Popular electric sedan with long range and advanced tech.", details: "Range: 430km | 0-100km/h: 5.6s | Price: $39,000" },
+      { name: "Nissan Leaf", type: "electric", image: "nissanleaf.jpeg", brand: "Nissan", year: 2024, info: "Affordable electric hatchback with practical range.", details: "Range: 270km | 0-100km/h: 7.9s | Price: $28,000" },
+      { name: "Volkswagen Golf", type: "hatchback", image: "volkswagengolf.jpeg", brand: "Volkswagen", year: 2024, info: "Versatile hatchback with efficient engines and modern tech.", details: "Engine: 1.4L, 147hp | Mileage: 17km/l | Price: $24,000" },
+      { name: "Mini Cooper", type: "hatchback", image: "minicooper.jpeg", brand: "Mini", year: 2024, info: "Iconic small car with fun driving dynamics.", details: "Engine: 1.5L, 134hp | Mileage: 16km/l | Price: $23,000" },
+      { name: "Mercedes S-Class", type: "luxury", image: "mercedessclass.jpeg", brand: "Mercedes-Benz", year: 2024, info: "Flagship luxury sedan with top-tier comfort and technology.", details: "Engine: 3.0L/4.0L, up to 496hp | Price: $110,000" },
+      { name: "Audi A8", type: "luxury", image: "audia8.jpeg", brand: "Audi", year: 2024, info: "Premium luxury sedan with advanced features and comfort.", details: "Engine: 3.0L V6, 335hp | Price: $87,000" },
+      { name: "Honda Civic", type: "sedan", image: "hondacivic.jpeg", brand: "Honda", year: 2024, info: "Popular compact sedan with reliability and efficiency.", details: "Engine: 2.0L, 158hp | Mileage: 17km/l | Price: $22,000" },
+      { name: "Hyundai Elantra", type: "sedan", image: "hyundaielantra.jpeg", brand: "Hyundai", year: 2024, info: "Stylish sedan with good features and value.", details: "Engine: 2.0L, 147hp | Mileage: 16km/l | Price: $20,000" },
+      { name: "Mazda MX-5", type: "sports", image: "mazdamx5.jpeg", brand: "Mazda", year: 2024, info: "Lightweight roadster with fun-to-drive character.", details: "Engine: 2.0L, 181hp | 0-100km/h: 6.5s | Price: $28,000" }
+    ];
+
+    document.getElementById('categorySelect').addEventListener('change', function() {
+      const val = this.value;
+      document.getElementById('categoryInfo').textContent = info[val] || '';
+      const carResults = document.getElementById('carResults');
+      if (!val) {
+        carResults.innerHTML = '';
+        return;
+      }
+      const filtered = cars.filter(car => car.type === val).slice(0, 10);
+      if (filtered.length === 0) {
+        carResults.innerHTML = '<div style="color:#c0392b;">No cars found for this category.</div>';
+        return;
+      }
+      carResults.innerHTML = '<div style="display:flex;flex-direction:column;gap:36px;align-items:center;width:100vw;">' +
+        filtered.map(car => `
+          <div style="background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.13);width:90vw;max-width:1100px;min-height:200px;padding:36px 32px 32px 32px;display:flex;flex-direction:row;align-items:flex-start;gap:36px;margin-bottom:18px;">
+            <img src="${car.image}" alt="${car.name}" style="width:260px;height:180px;object-fit:cover;border-radius:12px;background:#eee;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+            <div style="display:flex;flex-direction:column;justify-content:center;flex:1;">
+              <div style="font-weight:bold;font-size:30px;color:#2d3e50;margin-bottom:10px;">${car.name}</div>
+              <div style="font-size:19px;color:#333;margin-bottom:10px;"><b>Brand:</b> ${car.brand} | <b>Type:</b> ${car.type.charAt(0).toUpperCase() + car.type.slice(1)} | <b>Year:</b> ${car.year}</div>
+              <div style="font-size:18px;color:#444;margin-bottom:10px;">${car.info}</div>
+              <div style="font-size:16px;color:#555;margin-bottom:10px;">${car.details}</div>
+              <div style="font-size:16px;color:#444;margin-bottom:6px;"><b>More Details:</b></div>
+              <ul style="font-size:16px;color:#444;margin:0 0 10px 22px;padding:0;">
+                <li><b>Image File:</b> ${car.image}</li>
+                <li><b>Car Name:</b> ${car.name}</li>
+                <li><b>Brand:</b> ${car.brand}</li>
+                <li><b>Type:</b> ${car.type.charAt(0).toUpperCase() + car.type.slice(1)}</li>
+                <li><b>Year:</b> ${car.year}</li>
+              </ul>
+            </div>
+          </div>
+        `).join('') + '</div>';
+    });
+  </script>
+</body>
+</html>

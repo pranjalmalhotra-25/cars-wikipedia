@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Top Cars - Car Wikipedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #ffffff, #ffffff 80%);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #2a2a2a;
+    }
+
+    .navbar {
+      background: #1a1a1a;
+      color: #f0f0f0;
+      padding: 16px 0 12px 0;
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 2px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .navbar a {
+      color: #f0f0f0;
+      text-decoration: none;
+      margin: 0 18px;
+      font-size: 18px;
+      font-weight: normal;
+      transition: color 0.2s;
+    }
+
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+
+    .header {
+      background: #000000;
+      color: #f0f0f0;
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 18px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #3a4a5a;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .car-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .car-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 480px;
+      padding: 18px 16px 16px 16px;
+      text-align: left;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+
+    .car-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    .car-card img {
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 7px;
+      background: #e0e0e0;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .car-card-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .car-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #111;
+      text-align: left;
+    }
+
+    .car-info {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 8px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .car-details {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .footer {
+      background: #1a1a1a;
+      color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .navbar a {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    Car Wikipedia
+    <a href="index.html">Home</a>
+    <a href="categories.html">Categories</a>
+    <a href="#">Top Cars</a>
+    <a href="aboutuspage.html">About Us</a>
+    <a href="login.html">Login</a>
+  </div>
+  <div class="header">
+    <h1>Top Cars</h1>
+    <p>Explore the best cars of 2025!</p>
+  </div>
+  <div class="container">
+    <h2>Our Picks for the Best Cars</h2>
+    <div class="car-list" id="topCarList">
+      <!-- Top car cards will be inserted here by JavaScript -->
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2025 Car Wikipedia. Project by Pranjal Malhotra
+  </div>
+  <script>
+    const topCars = [
+      {
+        name: "BMW M8",
+        brand: "BMW",
+        type: "Coupe",
+        year: 2024,
+        image: "bmwm8.jpeg",
+        info: "High-performance coupe with stunning looks and thrilling speed.",
+        details: "Engine: 4.4L V8, 617hp | Mileage: 8km/l | Price: $133,000"
+      },
+      {
+        name: "Porsche 911 Carrera",
+        brand: "Porsche",
+        type: "Sports Car",
+        year: 2024,
+        image: "porsche911carrera.jpeg",
+        info: "Iconic sports car with rear-engine layout and thrilling performance.",
+        details: "Engine: 3.0L Twin-Turbo Flat-6, 379hp | 0-100km/h: 4.2s | Price: $106,000"
+      },
+      {
+        name: "Audi RS7 Sportback",
+        brand: "Audi",
+        type: "Luxury Sedan",
+        year: 2024,
+        image: "audirs7sportback.jpeg",
+        info: "A high-performance luxury sedan with a sleek design and powerful engine.",
+        details: "Engine: 4.0L V8, 591hp | 0-100km/h: 3.5s | Price: $120,000"
+      },
+      {
+        name: "Lamborghini Huracan Evo",
+        brand: "Lamborghini",
+        type: "Supercar",
+        year: 2024,
+        image: "lamborginihuracanevo.jpeg",
+        info: "A stunning supercar with exceptional performance and cutting-edge technology.",
+        details: "Engine: 5.2L V10, 631hp | 0-100km/h: 2.9s | Price: $261,000"
+      },
+      {
+        name: "Ford Mustang Mach-E",
+        brand: "Ford",
+        type: "Electric SUV",
+        year: 2024,
+        image: "fordmustangmache.jpeg",
+        info: "An electric SUV with a sporty design and impressive range.",
+        details: "Range: 480km | 0-100km/h: 3.7s | Price: $55,000"
+      }
+    ];
+
+    function showTopCars(carArray) {
+      const carList = document.getElementById('topCarList');
+      carList.innerHTML = '';
+      carArray.forEach(car => {
+        const card = document.createElement('div');
+        card.className = 'car-card';
+        card.innerHTML = `
+          <img src="${car.image}" alt="${car.name}">
+          <div class="car-card-details">
+            <div class="car-title">${car.name}</div>
+            <div class="car-info"><b>Brand:</b> ${car.brand} | <b>Type:</b> ${car.type} | <b>Year:</b> ${car.year}</div>
+            <div class="car-info">${car.info}</div>
+            <div class="car-details">${car.details}</div>
+          </div>
+        `;
+        carList.appendChild(card);
+      });
+    }
+
+    // Show top cars on page load
+    showTopCars(topCars);
+  </script>
+</body>
+</html>
